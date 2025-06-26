@@ -9,4 +9,8 @@ export default () => ({
     database: process.env.POSTGRES_DB,
     synchronize: process.env.POSTGRES_SYNCHRONIZE,
   },
+  jwt: {
+    secret: process.env.JWT_SECRET,
+    expiresIn: process.env.JWT_EXPIRATION,
+  },
 });

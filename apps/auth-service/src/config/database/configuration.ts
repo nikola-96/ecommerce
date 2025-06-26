@@ -9,6 +9,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   constructor(private readonly configService: ConfigService) {}
 
   onModuleInit(): void {
+    console.log(__dirname);
     this.logger.log('📘 TypeORM Module Successfully Initialized');
   }
 
@@ -20,9 +21,9 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       username: this.configService.get('postgresConfig.username'),
       password: this.configService.get('postgresConfig.password'),
       database: this.configService.get('postgresConfig.database'),
-      entities: [__dirname + '/../**/*.entity.{js,ts}'],
-      synchronize:
-        this.configService.get('postgresConfig.synchronize') === 'true',
+      synchronize: this.configService.get('postgresConfig.synchronize'),
+      entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
+      autoLoadEntities: true,
     };
   }
 }
